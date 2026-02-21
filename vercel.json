@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "functions": {
+    "api/generate-key.js": {
+      "memory": 256,
+      "maxDuration": 10
+    },
+    "api/verify-key.js": {
+      "memory": 256,
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    { "source": "/api/generate-key", "destination": "/api/generate-key.js" },
+    { "source": "/api/verify-key", "destination": "/api/verify-key.js" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, X-API-Key" }
+      ]
+    }
+  ]
+}
